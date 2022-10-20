@@ -16,7 +16,7 @@ _$_TelData _$$_TelDataFromJson(Map<String, dynamic> json) => _$_TelData(
 Map<String, dynamic> _$$_TelDataToJson(_$_TelData instance) =>
     <String, dynamic>{
       'update_id': instance.UpdateId,
-      'message': instance.message,
+      'message': instance.message?.toJson(),
     };
 
 _$_MessageData _$$_MessageDataFromJson(Map<String, dynamic> json) =>
@@ -30,15 +30,19 @@ _$_MessageData _$$_MessageDataFromJson(Map<String, dynamic> json) =>
           : ChatData.fromJson(json['chat'] as Map<String, dynamic>),
       date: json['date'] as int?,
       text: json['text'] as String?,
+      location: json['location'] == null
+          ? null
+          : TelLatlng.fromJson(json['location'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_MessageDataToJson(_$_MessageData instance) =>
     <String, dynamic>{
       'message_id': instance.messageId,
-      'from': instance.from,
-      'chat': instance.chat,
+      'from': instance.from?.toJson(),
+      'chat': instance.chat?.toJson(),
       'date': instance.date,
       'text': instance.text,
+      'location': instance.location?.toJson(),
     };
 
 _$_FromData _$$_FromDataFromJson(Map<String, dynamic> json) => _$_FromData(
@@ -75,4 +79,15 @@ Map<String, dynamic> _$$_ChatDataToJson(_$_ChatData instance) =>
       'last_name': instance.lastName,
       'username': instance.userName,
       'type': instance.type,
+    };
+
+_$_TelLatlng _$$_TelLatlngFromJson(Map<String, dynamic> json) => _$_TelLatlng(
+      latitude: (json['latitude'] as num?)?.toDouble(),
+      longitude: (json['longitude'] as num?)?.toDouble(),
+    );
+
+Map<String, dynamic> _$$_TelLatlngToJson(_$_TelLatlng instance) =>
+    <String, dynamic>{
+      'latitude': instance.latitude,
+      'longitude': instance.longitude,
     };

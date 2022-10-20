@@ -198,6 +198,7 @@ mixin _$MessageData {
   ChatData? get chat => throw _privateConstructorUsedError;
   int? get date => throw _privateConstructorUsedError;
   String? get text => throw _privateConstructorUsedError;
+  TelLatlng? get location => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -216,10 +217,12 @@ abstract class $MessageDataCopyWith<$Res> {
       FromData? from,
       ChatData? chat,
       int? date,
-      String? text});
+      String? text,
+      TelLatlng? location});
 
   $FromDataCopyWith<$Res>? get from;
   $ChatDataCopyWith<$Res>? get chat;
+  $TelLatlngCopyWith<$Res>? get location;
 }
 
 /// @nodoc
@@ -240,6 +243,7 @@ class _$MessageDataCopyWithImpl<$Res, $Val extends MessageData>
     Object? chat = freezed,
     Object? date = freezed,
     Object? text = freezed,
+    Object? location = freezed,
   }) {
     return _then(_value.copyWith(
       messageId: freezed == messageId
@@ -262,6 +266,10 @@ class _$MessageDataCopyWithImpl<$Res, $Val extends MessageData>
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
               as String?,
+      location: freezed == location
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as TelLatlng?,
     ) as $Val);
   }
 
@@ -288,6 +296,18 @@ class _$MessageDataCopyWithImpl<$Res, $Val extends MessageData>
       return _then(_value.copyWith(chat: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $TelLatlngCopyWith<$Res>? get location {
+    if (_value.location == null) {
+      return null;
+    }
+
+    return $TelLatlngCopyWith<$Res>(_value.location!, (value) {
+      return _then(_value.copyWith(location: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -303,12 +323,15 @@ abstract class _$$_MessageDataCopyWith<$Res>
       FromData? from,
       ChatData? chat,
       int? date,
-      String? text});
+      String? text,
+      TelLatlng? location});
 
   @override
   $FromDataCopyWith<$Res>? get from;
   @override
   $ChatDataCopyWith<$Res>? get chat;
+  @override
+  $TelLatlngCopyWith<$Res>? get location;
 }
 
 /// @nodoc
@@ -327,6 +350,7 @@ class __$$_MessageDataCopyWithImpl<$Res>
     Object? chat = freezed,
     Object? date = freezed,
     Object? text = freezed,
+    Object? location = freezed,
   }) {
     return _then(_$_MessageData(
       messageId: freezed == messageId
@@ -349,6 +373,10 @@ class __$$_MessageDataCopyWithImpl<$Res>
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
               as String?,
+      location: freezed == location
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as TelLatlng?,
     ));
   }
 }
@@ -361,7 +389,8 @@ class _$_MessageData extends _MessageData {
       this.from,
       this.chat,
       this.date,
-      this.text})
+      this.text,
+      this.location})
       : super._();
 
   factory _$_MessageData.fromJson(Map<String, dynamic> json) =>
@@ -378,10 +407,12 @@ class _$_MessageData extends _MessageData {
   final int? date;
   @override
   final String? text;
+  @override
+  final TelLatlng? location;
 
   @override
   String toString() {
-    return 'MessageData(messageId: $messageId, from: $from, chat: $chat, date: $date, text: $text)';
+    return 'MessageData(messageId: $messageId, from: $from, chat: $chat, date: $date, text: $text, location: $location)';
   }
 
   @override
@@ -394,13 +425,15 @@ class _$_MessageData extends _MessageData {
             (identical(other.from, from) || other.from == from) &&
             (identical(other.chat, chat) || other.chat == chat) &&
             (identical(other.date, date) || other.date == date) &&
-            (identical(other.text, text) || other.text == text));
+            (identical(other.text, text) || other.text == text) &&
+            (identical(other.location, location) ||
+                other.location == location));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, messageId, from, chat, date, text);
+      Object.hash(runtimeType, messageId, from, chat, date, text, location);
 
   @JsonKey(ignore: true)
   @override
@@ -422,7 +455,8 @@ abstract class _MessageData extends MessageData {
       final FromData? from,
       final ChatData? chat,
       final int? date,
-      final String? text}) = _$_MessageData;
+      final String? text,
+      final TelLatlng? location}) = _$_MessageData;
   _MessageData._() : super._();
 
   factory _MessageData.fromJson(Map<String, dynamic> json) =
@@ -439,6 +473,8 @@ abstract class _MessageData extends MessageData {
   int? get date;
   @override
   String? get text;
+  @override
+  TelLatlng? get location;
   @override
   @JsonKey(ignore: true)
   _$$_MessageDataCopyWith<_$_MessageData> get copyWith =>
@@ -934,5 +970,159 @@ abstract class _ChatData extends ChatData {
   @override
   @JsonKey(ignore: true)
   _$$_ChatDataCopyWith<_$_ChatData> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+TelLatlng _$TelLatlngFromJson(Map<String, dynamic> json) {
+  return _TelLatlng.fromJson(json);
+}
+
+/// @nodoc
+mixin _$TelLatlng {
+  double? get latitude => throw _privateConstructorUsedError;
+  double? get longitude => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $TelLatlngCopyWith<TelLatlng> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $TelLatlngCopyWith<$Res> {
+  factory $TelLatlngCopyWith(TelLatlng value, $Res Function(TelLatlng) then) =
+      _$TelLatlngCopyWithImpl<$Res, TelLatlng>;
+  @useResult
+  $Res call({double? latitude, double? longitude});
+}
+
+/// @nodoc
+class _$TelLatlngCopyWithImpl<$Res, $Val extends TelLatlng>
+    implements $TelLatlngCopyWith<$Res> {
+  _$TelLatlngCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? latitude = freezed,
+    Object? longitude = freezed,
+  }) {
+    return _then(_value.copyWith(
+      latitude: freezed == latitude
+          ? _value.latitude
+          : latitude // ignore: cast_nullable_to_non_nullable
+              as double?,
+      longitude: freezed == longitude
+          ? _value.longitude
+          : longitude // ignore: cast_nullable_to_non_nullable
+              as double?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_TelLatlngCopyWith<$Res> implements $TelLatlngCopyWith<$Res> {
+  factory _$$_TelLatlngCopyWith(
+          _$_TelLatlng value, $Res Function(_$_TelLatlng) then) =
+      __$$_TelLatlngCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({double? latitude, double? longitude});
+}
+
+/// @nodoc
+class __$$_TelLatlngCopyWithImpl<$Res>
+    extends _$TelLatlngCopyWithImpl<$Res, _$_TelLatlng>
+    implements _$$_TelLatlngCopyWith<$Res> {
+  __$$_TelLatlngCopyWithImpl(
+      _$_TelLatlng _value, $Res Function(_$_TelLatlng) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? latitude = freezed,
+    Object? longitude = freezed,
+  }) {
+    return _then(_$_TelLatlng(
+      latitude: freezed == latitude
+          ? _value.latitude
+          : latitude // ignore: cast_nullable_to_non_nullable
+              as double?,
+      longitude: freezed == longitude
+          ? _value.longitude
+          : longitude // ignore: cast_nullable_to_non_nullable
+              as double?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_TelLatlng extends _TelLatlng {
+  _$_TelLatlng({this.latitude, this.longitude}) : super._();
+
+  factory _$_TelLatlng.fromJson(Map<String, dynamic> json) =>
+      _$$_TelLatlngFromJson(json);
+
+  @override
+  final double? latitude;
+  @override
+  final double? longitude;
+
+  @override
+  String toString() {
+    return 'TelLatlng(latitude: $latitude, longitude: $longitude)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_TelLatlng &&
+            (identical(other.latitude, latitude) ||
+                other.latitude == latitude) &&
+            (identical(other.longitude, longitude) ||
+                other.longitude == longitude));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, latitude, longitude);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_TelLatlngCopyWith<_$_TelLatlng> get copyWith =>
+      __$$_TelLatlngCopyWithImpl<_$_TelLatlng>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_TelLatlngToJson(
+      this,
+    );
+  }
+}
+
+abstract class _TelLatlng extends TelLatlng {
+  factory _TelLatlng({final double? latitude, final double? longitude}) =
+      _$_TelLatlng;
+  _TelLatlng._() : super._();
+
+  factory _TelLatlng.fromJson(Map<String, dynamic> json) =
+      _$_TelLatlng.fromJson;
+
+  @override
+  double? get latitude;
+  @override
+  double? get longitude;
+  @override
+  @JsonKey(ignore: true)
+  _$$_TelLatlngCopyWith<_$_TelLatlng> get copyWith =>
       throw _privateConstructorUsedError;
 }

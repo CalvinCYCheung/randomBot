@@ -1,3 +1,4 @@
+import 'package:app/data/command/tel_bot_command.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'tel_data.freezed.dart';
@@ -23,8 +24,26 @@ class MessageData with _$MessageData {
     ChatData? chat,
     int? date,
     String? text,
+    TelLatlng? location,
   }) = _MessageData;
   const MessageData._();
+
+  bool get isCommand {
+    if (text == null) return false;
+    if (!text!.startsWith('/')) return false;
+    if (text!.substring(1).trim().isEmpty) return false;
+    final t = text!.substring(1).trim();
+    if (!TelBotCommand.values.allCommand.any((element) => t == element)) {
+      return false;
+    }
+    return true;
+  }
+
+  TelBotCommand get command {
+    if (!isCommand) return TelBotCommand.notCommand;
+    final com = text!.substring(1);
+    return TelBotCommand.values.byName(com);
+  }
 
   factory MessageData.fromJson(Map<String, dynamic> json) =>
       _$MessageDataFromJson(json);
@@ -59,4 +78,16 @@ class ChatData with _$ChatData {
 
   factory ChatData.fromJson(Map<String, dynamic> json) =>
       _$ChatDataFromJson(json);
+}
+
+@freezed
+class TelLatlng with _$TelLatlng {
+  factory TelLatlng({
+    double? latitude,
+    double? longitude,
+  }) = _TelLatlng;
+  const TelLatlng._();
+
+  factory TelLatlng.fromJson(Map<String, dynamic> json) =>
+      _$TelLatlngFromJson(json);
 }

@@ -36,6 +36,8 @@ mixin _$SendMessageModel {
   int? get replyToMessageId => throw _privateConstructorUsedError;
   @JsonKey(name: 'allow_sending_without_reply')
   bool? get allowSendingWithOutReply => throw _privateConstructorUsedError;
+  @JsonKey(name: 'reply_markup')
+  ReplyMarkUp? get replyMarkUp => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -65,7 +67,11 @@ abstract class $SendMessageModelCopyWith<$Res> {
       @JsonKey(name: 'reply_to_message_id')
           int? replyToMessageId,
       @JsonKey(name: 'allow_sending_without_reply')
-          bool? allowSendingWithOutReply});
+          bool? allowSendingWithOutReply,
+      @JsonKey(name: 'reply_markup')
+          ReplyMarkUp? replyMarkUp});
+
+  $ReplyMarkUpCopyWith<$Res>? get replyMarkUp;
 }
 
 /// @nodoc
@@ -90,6 +96,7 @@ class _$SendMessageModelCopyWithImpl<$Res, $Val extends SendMessageModel>
     Object? protectContent = freezed,
     Object? replyToMessageId = freezed,
     Object? allowSendingWithOutReply = freezed,
+    Object? replyMarkUp = freezed,
   }) {
     return _then(_value.copyWith(
       chatId: freezed == chatId
@@ -128,7 +135,23 @@ class _$SendMessageModelCopyWithImpl<$Res, $Val extends SendMessageModel>
           ? _value.allowSendingWithOutReply
           : allowSendingWithOutReply // ignore: cast_nullable_to_non_nullable
               as bool?,
+      replyMarkUp: freezed == replyMarkUp
+          ? _value.replyMarkUp
+          : replyMarkUp // ignore: cast_nullable_to_non_nullable
+              as ReplyMarkUp?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ReplyMarkUpCopyWith<$Res>? get replyMarkUp {
+    if (_value.replyMarkUp == null) {
+      return null;
+    }
+
+    return $ReplyMarkUpCopyWith<$Res>(_value.replyMarkUp!, (value) {
+      return _then(_value.copyWith(replyMarkUp: value) as $Val);
+    });
   }
 }
 
@@ -156,7 +179,12 @@ abstract class _$$_SendMessageModelCopyWith<$Res>
       @JsonKey(name: 'reply_to_message_id')
           int? replyToMessageId,
       @JsonKey(name: 'allow_sending_without_reply')
-          bool? allowSendingWithOutReply});
+          bool? allowSendingWithOutReply,
+      @JsonKey(name: 'reply_markup')
+          ReplyMarkUp? replyMarkUp});
+
+  @override
+  $ReplyMarkUpCopyWith<$Res>? get replyMarkUp;
 }
 
 /// @nodoc
@@ -179,6 +207,7 @@ class __$$_SendMessageModelCopyWithImpl<$Res>
     Object? protectContent = freezed,
     Object? replyToMessageId = freezed,
     Object? allowSendingWithOutReply = freezed,
+    Object? replyMarkUp = freezed,
   }) {
     return _then(_$_SendMessageModel(
       chatId: freezed == chatId
@@ -217,6 +246,10 @@ class __$$_SendMessageModelCopyWithImpl<$Res>
           ? _value.allowSendingWithOutReply
           : allowSendingWithOutReply // ignore: cast_nullable_to_non_nullable
               as bool?,
+      replyMarkUp: freezed == replyMarkUp
+          ? _value.replyMarkUp
+          : replyMarkUp // ignore: cast_nullable_to_non_nullable
+              as ReplyMarkUp?,
     ));
   }
 }
@@ -240,7 +273,9 @@ class _$_SendMessageModel extends _SendMessageModel {
       @JsonKey(name: 'reply_to_message_id')
           this.replyToMessageId,
       @JsonKey(name: 'allow_sending_without_reply')
-          this.allowSendingWithOutReply})
+          this.allowSendingWithOutReply,
+      @JsonKey(name: 'reply_markup')
+          this.replyMarkUp})
       : _entities = entities,
         super._();
 
@@ -279,10 +314,13 @@ class _$_SendMessageModel extends _SendMessageModel {
   @override
   @JsonKey(name: 'allow_sending_without_reply')
   final bool? allowSendingWithOutReply;
+  @override
+  @JsonKey(name: 'reply_markup')
+  final ReplyMarkUp? replyMarkUp;
 
   @override
   String toString() {
-    return 'SendMessageModel(chatId: $chatId, text: $text, parseMode: $parseMode, entities: $entities, disableWebPagePreview: $disableWebPagePreview, disableNotification: $disableNotification, protectContent: $protectContent, replyToMessageId: $replyToMessageId, allowSendingWithOutReply: $allowSendingWithOutReply)';
+    return 'SendMessageModel(chatId: $chatId, text: $text, parseMode: $parseMode, entities: $entities, disableWebPagePreview: $disableWebPagePreview, disableNotification: $disableNotification, protectContent: $protectContent, replyToMessageId: $replyToMessageId, allowSendingWithOutReply: $allowSendingWithOutReply, replyMarkUp: $replyMarkUp)';
   }
 
   @override
@@ -305,7 +343,9 @@ class _$_SendMessageModel extends _SendMessageModel {
                 other.replyToMessageId == replyToMessageId) &&
             (identical(
                     other.allowSendingWithOutReply, allowSendingWithOutReply) ||
-                other.allowSendingWithOutReply == allowSendingWithOutReply));
+                other.allowSendingWithOutReply == allowSendingWithOutReply) &&
+            (identical(other.replyMarkUp, replyMarkUp) ||
+                other.replyMarkUp == replyMarkUp));
   }
 
   @JsonKey(ignore: true)
@@ -320,7 +360,8 @@ class _$_SendMessageModel extends _SendMessageModel {
       disableNotification,
       protectContent,
       replyToMessageId,
-      allowSendingWithOutReply);
+      allowSendingWithOutReply,
+      replyMarkUp);
 
   @JsonKey(ignore: true)
   @override
@@ -353,7 +394,9 @@ abstract class _SendMessageModel extends SendMessageModel {
       @JsonKey(name: 'reply_to_message_id')
           final int? replyToMessageId,
       @JsonKey(name: 'allow_sending_without_reply')
-          final bool? allowSendingWithOutReply}) = _$_SendMessageModel;
+          final bool? allowSendingWithOutReply,
+      @JsonKey(name: 'reply_markup')
+          final ReplyMarkUp? replyMarkUp}) = _$_SendMessageModel;
   _SendMessageModel._() : super._();
 
   factory _SendMessageModel.fromJson(Map<String, dynamic> json) =
@@ -385,7 +428,589 @@ abstract class _SendMessageModel extends SendMessageModel {
   @JsonKey(name: 'allow_sending_without_reply')
   bool? get allowSendingWithOutReply;
   @override
+  @JsonKey(name: 'reply_markup')
+  ReplyMarkUp? get replyMarkUp;
+  @override
   @JsonKey(ignore: true)
   _$$_SendMessageModelCopyWith<_$_SendMessageModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+ReplyMarkUp _$ReplyMarkUpFromJson(Map<String, dynamic> json) {
+  return _ReplyMarkUp.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ReplyMarkUp {
+  @JsonKey(name: 'inline_keyboard')
+  List<List<InlineKeyboardMarkup>>? get inlineKeyboardMarkup =>
+      throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  List<List<KeyboardButton>>? get keyboard =>
+      throw _privateConstructorUsedError;
+  @JsonKey(name: 'resize_keyboard')
+  bool? get resizeKeyboard => throw _privateConstructorUsedError;
+  @JsonKey(name: 'one_time_keyboard')
+  bool? get oneTimeKeyboard => throw _privateConstructorUsedError;
+  @JsonKey(name: 'input_field_placholder')
+  String? get inputFieldPlaceHolder => throw _privateConstructorUsedError;
+  bool? get selective => throw _privateConstructorUsedError;
+  ReplyKeyboardRemove? get replyKeyboardRemove =>
+      throw _privateConstructorUsedError;
+  ForceReply? get forceReply => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ReplyMarkUpCopyWith<ReplyMarkUp> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ReplyMarkUpCopyWith<$Res> {
+  factory $ReplyMarkUpCopyWith(
+          ReplyMarkUp value, $Res Function(ReplyMarkUp) then) =
+      _$ReplyMarkUpCopyWithImpl<$Res, ReplyMarkUp>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'inline_keyboard')
+          List<List<InlineKeyboardMarkup>>? inlineKeyboardMarkup,
+      @JsonKey(ignore: true)
+          List<List<KeyboardButton>>? keyboard,
+      @JsonKey(name: 'resize_keyboard')
+          bool? resizeKeyboard,
+      @JsonKey(name: 'one_time_keyboard')
+          bool? oneTimeKeyboard,
+      @JsonKey(name: 'input_field_placholder')
+          String? inputFieldPlaceHolder,
+      bool? selective,
+      ReplyKeyboardRemove? replyKeyboardRemove,
+      ForceReply? forceReply});
+
+  $ReplyKeyboardRemoveCopyWith<$Res>? get replyKeyboardRemove;
+  $ForceReplyCopyWith<$Res>? get forceReply;
+}
+
+/// @nodoc
+class _$ReplyMarkUpCopyWithImpl<$Res, $Val extends ReplyMarkUp>
+    implements $ReplyMarkUpCopyWith<$Res> {
+  _$ReplyMarkUpCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? inlineKeyboardMarkup = freezed,
+    Object? keyboard = freezed,
+    Object? resizeKeyboard = freezed,
+    Object? oneTimeKeyboard = freezed,
+    Object? inputFieldPlaceHolder = freezed,
+    Object? selective = freezed,
+    Object? replyKeyboardRemove = freezed,
+    Object? forceReply = freezed,
+  }) {
+    return _then(_value.copyWith(
+      inlineKeyboardMarkup: freezed == inlineKeyboardMarkup
+          ? _value.inlineKeyboardMarkup
+          : inlineKeyboardMarkup // ignore: cast_nullable_to_non_nullable
+              as List<List<InlineKeyboardMarkup>>?,
+      keyboard: freezed == keyboard
+          ? _value.keyboard
+          : keyboard // ignore: cast_nullable_to_non_nullable
+              as List<List<KeyboardButton>>?,
+      resizeKeyboard: freezed == resizeKeyboard
+          ? _value.resizeKeyboard
+          : resizeKeyboard // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      oneTimeKeyboard: freezed == oneTimeKeyboard
+          ? _value.oneTimeKeyboard
+          : oneTimeKeyboard // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      inputFieldPlaceHolder: freezed == inputFieldPlaceHolder
+          ? _value.inputFieldPlaceHolder
+          : inputFieldPlaceHolder // ignore: cast_nullable_to_non_nullable
+              as String?,
+      selective: freezed == selective
+          ? _value.selective
+          : selective // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      replyKeyboardRemove: freezed == replyKeyboardRemove
+          ? _value.replyKeyboardRemove
+          : replyKeyboardRemove // ignore: cast_nullable_to_non_nullable
+              as ReplyKeyboardRemove?,
+      forceReply: freezed == forceReply
+          ? _value.forceReply
+          : forceReply // ignore: cast_nullable_to_non_nullable
+              as ForceReply?,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ReplyKeyboardRemoveCopyWith<$Res>? get replyKeyboardRemove {
+    if (_value.replyKeyboardRemove == null) {
+      return null;
+    }
+
+    return $ReplyKeyboardRemoveCopyWith<$Res>(_value.replyKeyboardRemove!,
+        (value) {
+      return _then(_value.copyWith(replyKeyboardRemove: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ForceReplyCopyWith<$Res>? get forceReply {
+    if (_value.forceReply == null) {
+      return null;
+    }
+
+    return $ForceReplyCopyWith<$Res>(_value.forceReply!, (value) {
+      return _then(_value.copyWith(forceReply: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$_ReplyMarkUpCopyWith<$Res>
+    implements $ReplyMarkUpCopyWith<$Res> {
+  factory _$$_ReplyMarkUpCopyWith(
+          _$_ReplyMarkUp value, $Res Function(_$_ReplyMarkUp) then) =
+      __$$_ReplyMarkUpCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'inline_keyboard')
+          List<List<InlineKeyboardMarkup>>? inlineKeyboardMarkup,
+      @JsonKey(ignore: true)
+          List<List<KeyboardButton>>? keyboard,
+      @JsonKey(name: 'resize_keyboard')
+          bool? resizeKeyboard,
+      @JsonKey(name: 'one_time_keyboard')
+          bool? oneTimeKeyboard,
+      @JsonKey(name: 'input_field_placholder')
+          String? inputFieldPlaceHolder,
+      bool? selective,
+      ReplyKeyboardRemove? replyKeyboardRemove,
+      ForceReply? forceReply});
+
+  @override
+  $ReplyKeyboardRemoveCopyWith<$Res>? get replyKeyboardRemove;
+  @override
+  $ForceReplyCopyWith<$Res>? get forceReply;
+}
+
+/// @nodoc
+class __$$_ReplyMarkUpCopyWithImpl<$Res>
+    extends _$ReplyMarkUpCopyWithImpl<$Res, _$_ReplyMarkUp>
+    implements _$$_ReplyMarkUpCopyWith<$Res> {
+  __$$_ReplyMarkUpCopyWithImpl(
+      _$_ReplyMarkUp _value, $Res Function(_$_ReplyMarkUp) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? inlineKeyboardMarkup = freezed,
+    Object? keyboard = freezed,
+    Object? resizeKeyboard = freezed,
+    Object? oneTimeKeyboard = freezed,
+    Object? inputFieldPlaceHolder = freezed,
+    Object? selective = freezed,
+    Object? replyKeyboardRemove = freezed,
+    Object? forceReply = freezed,
+  }) {
+    return _then(_$_ReplyMarkUp(
+      inlineKeyboardMarkup: freezed == inlineKeyboardMarkup
+          ? _value._inlineKeyboardMarkup
+          : inlineKeyboardMarkup // ignore: cast_nullable_to_non_nullable
+              as List<List<InlineKeyboardMarkup>>?,
+      keyboard: freezed == keyboard
+          ? _value._keyboard
+          : keyboard // ignore: cast_nullable_to_non_nullable
+              as List<List<KeyboardButton>>?,
+      resizeKeyboard: freezed == resizeKeyboard
+          ? _value.resizeKeyboard
+          : resizeKeyboard // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      oneTimeKeyboard: freezed == oneTimeKeyboard
+          ? _value.oneTimeKeyboard
+          : oneTimeKeyboard // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      inputFieldPlaceHolder: freezed == inputFieldPlaceHolder
+          ? _value.inputFieldPlaceHolder
+          : inputFieldPlaceHolder // ignore: cast_nullable_to_non_nullable
+              as String?,
+      selective: freezed == selective
+          ? _value.selective
+          : selective // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      replyKeyboardRemove: freezed == replyKeyboardRemove
+          ? _value.replyKeyboardRemove
+          : replyKeyboardRemove // ignore: cast_nullable_to_non_nullable
+              as ReplyKeyboardRemove?,
+      forceReply: freezed == forceReply
+          ? _value.forceReply
+          : forceReply // ignore: cast_nullable_to_non_nullable
+              as ForceReply?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_ReplyMarkUp extends _ReplyMarkUp {
+  _$_ReplyMarkUp(
+      {@JsonKey(name: 'inline_keyboard')
+          final List<List<InlineKeyboardMarkup>>? inlineKeyboardMarkup,
+      @JsonKey(ignore: true)
+          final List<List<KeyboardButton>>? keyboard,
+      @JsonKey(name: 'resize_keyboard')
+          this.resizeKeyboard,
+      @JsonKey(name: 'one_time_keyboard')
+          this.oneTimeKeyboard,
+      @JsonKey(name: 'input_field_placholder')
+          this.inputFieldPlaceHolder,
+      this.selective,
+      this.replyKeyboardRemove,
+      this.forceReply})
+      : _inlineKeyboardMarkup = inlineKeyboardMarkup,
+        _keyboard = keyboard,
+        super._();
+
+  factory _$_ReplyMarkUp.fromJson(Map<String, dynamic> json) =>
+      _$$_ReplyMarkUpFromJson(json);
+
+  final List<List<InlineKeyboardMarkup>>? _inlineKeyboardMarkup;
+  @override
+  @JsonKey(name: 'inline_keyboard')
+  List<List<InlineKeyboardMarkup>>? get inlineKeyboardMarkup {
+    final value = _inlineKeyboardMarkup;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<List<KeyboardButton>>? _keyboard;
+  @override
+  @JsonKey(ignore: true)
+  List<List<KeyboardButton>>? get keyboard {
+    final value = _keyboard;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  @JsonKey(name: 'resize_keyboard')
+  final bool? resizeKeyboard;
+  @override
+  @JsonKey(name: 'one_time_keyboard')
+  final bool? oneTimeKeyboard;
+  @override
+  @JsonKey(name: 'input_field_placholder')
+  final String? inputFieldPlaceHolder;
+  @override
+  final bool? selective;
+  @override
+  final ReplyKeyboardRemove? replyKeyboardRemove;
+  @override
+  final ForceReply? forceReply;
+
+  @override
+  String toString() {
+    return 'ReplyMarkUp(inlineKeyboardMarkup: $inlineKeyboardMarkup, keyboard: $keyboard, resizeKeyboard: $resizeKeyboard, oneTimeKeyboard: $oneTimeKeyboard, inputFieldPlaceHolder: $inputFieldPlaceHolder, selective: $selective, replyKeyboardRemove: $replyKeyboardRemove, forceReply: $forceReply)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_ReplyMarkUp &&
+            const DeepCollectionEquality()
+                .equals(other._inlineKeyboardMarkup, _inlineKeyboardMarkup) &&
+            const DeepCollectionEquality().equals(other._keyboard, _keyboard) &&
+            (identical(other.resizeKeyboard, resizeKeyboard) ||
+                other.resizeKeyboard == resizeKeyboard) &&
+            (identical(other.oneTimeKeyboard, oneTimeKeyboard) ||
+                other.oneTimeKeyboard == oneTimeKeyboard) &&
+            (identical(other.inputFieldPlaceHolder, inputFieldPlaceHolder) ||
+                other.inputFieldPlaceHolder == inputFieldPlaceHolder) &&
+            (identical(other.selective, selective) ||
+                other.selective == selective) &&
+            (identical(other.replyKeyboardRemove, replyKeyboardRemove) ||
+                other.replyKeyboardRemove == replyKeyboardRemove) &&
+            (identical(other.forceReply, forceReply) ||
+                other.forceReply == forceReply));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_inlineKeyboardMarkup),
+      const DeepCollectionEquality().hash(_keyboard),
+      resizeKeyboard,
+      oneTimeKeyboard,
+      inputFieldPlaceHolder,
+      selective,
+      replyKeyboardRemove,
+      forceReply);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_ReplyMarkUpCopyWith<_$_ReplyMarkUp> get copyWith =>
+      __$$_ReplyMarkUpCopyWithImpl<_$_ReplyMarkUp>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_ReplyMarkUpToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ReplyMarkUp extends ReplyMarkUp {
+  factory _ReplyMarkUp(
+      {@JsonKey(name: 'inline_keyboard')
+          final List<List<InlineKeyboardMarkup>>? inlineKeyboardMarkup,
+      @JsonKey(ignore: true)
+          final List<List<KeyboardButton>>? keyboard,
+      @JsonKey(name: 'resize_keyboard')
+          final bool? resizeKeyboard,
+      @JsonKey(name: 'one_time_keyboard')
+          final bool? oneTimeKeyboard,
+      @JsonKey(name: 'input_field_placholder')
+          final String? inputFieldPlaceHolder,
+      final bool? selective,
+      final ReplyKeyboardRemove? replyKeyboardRemove,
+      final ForceReply? forceReply}) = _$_ReplyMarkUp;
+  _ReplyMarkUp._() : super._();
+
+  factory _ReplyMarkUp.fromJson(Map<String, dynamic> json) =
+      _$_ReplyMarkUp.fromJson;
+
+  @override
+  @JsonKey(name: 'inline_keyboard')
+  List<List<InlineKeyboardMarkup>>? get inlineKeyboardMarkup;
+  @override
+  @JsonKey(ignore: true)
+  List<List<KeyboardButton>>? get keyboard;
+  @override
+  @JsonKey(name: 'resize_keyboard')
+  bool? get resizeKeyboard;
+  @override
+  @JsonKey(name: 'one_time_keyboard')
+  bool? get oneTimeKeyboard;
+  @override
+  @JsonKey(name: 'input_field_placholder')
+  String? get inputFieldPlaceHolder;
+  @override
+  bool? get selective;
+  @override
+  ReplyKeyboardRemove? get replyKeyboardRemove;
+  @override
+  ForceReply? get forceReply;
+  @override
+  @JsonKey(ignore: true)
+  _$$_ReplyMarkUpCopyWith<_$_ReplyMarkUp> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+ForceReply _$ForceReplyFromJson(Map<String, dynamic> json) {
+  return _ForceReply.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ForceReply {
+  @JsonKey(name: 'force_reply')
+  bool get forceReply => throw _privateConstructorUsedError;
+  @JsonKey(name: 'input_field_placeholder')
+  String? get inputFieldPlaceHolder => throw _privateConstructorUsedError;
+  bool? get selective => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ForceReplyCopyWith<ForceReply> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ForceReplyCopyWith<$Res> {
+  factory $ForceReplyCopyWith(
+          ForceReply value, $Res Function(ForceReply) then) =
+      _$ForceReplyCopyWithImpl<$Res, ForceReply>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'force_reply') bool forceReply,
+      @JsonKey(name: 'input_field_placeholder') String? inputFieldPlaceHolder,
+      bool? selective});
+}
+
+/// @nodoc
+class _$ForceReplyCopyWithImpl<$Res, $Val extends ForceReply>
+    implements $ForceReplyCopyWith<$Res> {
+  _$ForceReplyCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? forceReply = null,
+    Object? inputFieldPlaceHolder = freezed,
+    Object? selective = freezed,
+  }) {
+    return _then(_value.copyWith(
+      forceReply: null == forceReply
+          ? _value.forceReply
+          : forceReply // ignore: cast_nullable_to_non_nullable
+              as bool,
+      inputFieldPlaceHolder: freezed == inputFieldPlaceHolder
+          ? _value.inputFieldPlaceHolder
+          : inputFieldPlaceHolder // ignore: cast_nullable_to_non_nullable
+              as String?,
+      selective: freezed == selective
+          ? _value.selective
+          : selective // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_ForceReplyCopyWith<$Res>
+    implements $ForceReplyCopyWith<$Res> {
+  factory _$$_ForceReplyCopyWith(
+          _$_ForceReply value, $Res Function(_$_ForceReply) then) =
+      __$$_ForceReplyCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'force_reply') bool forceReply,
+      @JsonKey(name: 'input_field_placeholder') String? inputFieldPlaceHolder,
+      bool? selective});
+}
+
+/// @nodoc
+class __$$_ForceReplyCopyWithImpl<$Res>
+    extends _$ForceReplyCopyWithImpl<$Res, _$_ForceReply>
+    implements _$$_ForceReplyCopyWith<$Res> {
+  __$$_ForceReplyCopyWithImpl(
+      _$_ForceReply _value, $Res Function(_$_ForceReply) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? forceReply = null,
+    Object? inputFieldPlaceHolder = freezed,
+    Object? selective = freezed,
+  }) {
+    return _then(_$_ForceReply(
+      forceReply: null == forceReply
+          ? _value.forceReply
+          : forceReply // ignore: cast_nullable_to_non_nullable
+              as bool,
+      inputFieldPlaceHolder: freezed == inputFieldPlaceHolder
+          ? _value.inputFieldPlaceHolder
+          : inputFieldPlaceHolder // ignore: cast_nullable_to_non_nullable
+              as String?,
+      selective: freezed == selective
+          ? _value.selective
+          : selective // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_ForceReply extends _ForceReply {
+  _$_ForceReply(
+      {@JsonKey(name: 'force_reply') required this.forceReply,
+      @JsonKey(name: 'input_field_placeholder') this.inputFieldPlaceHolder,
+      this.selective})
+      : super._();
+
+  factory _$_ForceReply.fromJson(Map<String, dynamic> json) =>
+      _$$_ForceReplyFromJson(json);
+
+  @override
+  @JsonKey(name: 'force_reply')
+  final bool forceReply;
+  @override
+  @JsonKey(name: 'input_field_placeholder')
+  final String? inputFieldPlaceHolder;
+  @override
+  final bool? selective;
+
+  @override
+  String toString() {
+    return 'ForceReply(forceReply: $forceReply, inputFieldPlaceHolder: $inputFieldPlaceHolder, selective: $selective)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_ForceReply &&
+            (identical(other.forceReply, forceReply) ||
+                other.forceReply == forceReply) &&
+            (identical(other.inputFieldPlaceHolder, inputFieldPlaceHolder) ||
+                other.inputFieldPlaceHolder == inputFieldPlaceHolder) &&
+            (identical(other.selective, selective) ||
+                other.selective == selective));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, forceReply, inputFieldPlaceHolder, selective);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_ForceReplyCopyWith<_$_ForceReply> get copyWith =>
+      __$$_ForceReplyCopyWithImpl<_$_ForceReply>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_ForceReplyToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ForceReply extends ForceReply {
+  factory _ForceReply(
+      {@JsonKey(name: 'force_reply')
+          required final bool forceReply,
+      @JsonKey(name: 'input_field_placeholder')
+          final String? inputFieldPlaceHolder,
+      final bool? selective}) = _$_ForceReply;
+  _ForceReply._() : super._();
+
+  factory _ForceReply.fromJson(Map<String, dynamic> json) =
+      _$_ForceReply.fromJson;
+
+  @override
+  @JsonKey(name: 'force_reply')
+  bool get forceReply;
+  @override
+  @JsonKey(name: 'input_field_placeholder')
+  String? get inputFieldPlaceHolder;
+  @override
+  bool? get selective;
+  @override
+  @JsonKey(ignore: true)
+  _$$_ForceReplyCopyWith<_$_ForceReply> get copyWith =>
       throw _privateConstructorUsedError;
 }
