@@ -445,7 +445,6 @@ mixin _$ReplyMarkUp {
   @JsonKey(name: 'inline_keyboard')
   List<List<InlineKeyboardMarkup>>? get inlineKeyboardMarkup =>
       throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
   List<List<KeyboardButton>>? get keyboard =>
       throw _privateConstructorUsedError;
   @JsonKey(name: 'resize_keyboard')
@@ -455,8 +454,8 @@ mixin _$ReplyMarkUp {
   @JsonKey(name: 'input_field_placholder')
   String? get inputFieldPlaceHolder => throw _privateConstructorUsedError;
   bool? get selective => throw _privateConstructorUsedError;
-  ReplyKeyboardRemove? get replyKeyboardRemove =>
-      throw _privateConstructorUsedError;
+  @JsonKey(name: 'remove_keyboard')
+  bool? get removeKeyboard => throw _privateConstructorUsedError;
   ForceReply? get forceReply => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -474,8 +473,7 @@ abstract class $ReplyMarkUpCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'inline_keyboard')
           List<List<InlineKeyboardMarkup>>? inlineKeyboardMarkup,
-      @JsonKey(ignore: true)
-          List<List<KeyboardButton>>? keyboard,
+      List<List<KeyboardButton>>? keyboard,
       @JsonKey(name: 'resize_keyboard')
           bool? resizeKeyboard,
       @JsonKey(name: 'one_time_keyboard')
@@ -483,10 +481,10 @@ abstract class $ReplyMarkUpCopyWith<$Res> {
       @JsonKey(name: 'input_field_placholder')
           String? inputFieldPlaceHolder,
       bool? selective,
-      ReplyKeyboardRemove? replyKeyboardRemove,
+      @JsonKey(name: 'remove_keyboard')
+          bool? removeKeyboard,
       ForceReply? forceReply});
 
-  $ReplyKeyboardRemoveCopyWith<$Res>? get replyKeyboardRemove;
   $ForceReplyCopyWith<$Res>? get forceReply;
 }
 
@@ -509,7 +507,7 @@ class _$ReplyMarkUpCopyWithImpl<$Res, $Val extends ReplyMarkUp>
     Object? oneTimeKeyboard = freezed,
     Object? inputFieldPlaceHolder = freezed,
     Object? selective = freezed,
-    Object? replyKeyboardRemove = freezed,
+    Object? removeKeyboard = freezed,
     Object? forceReply = freezed,
   }) {
     return _then(_value.copyWith(
@@ -537,28 +535,15 @@ class _$ReplyMarkUpCopyWithImpl<$Res, $Val extends ReplyMarkUp>
           ? _value.selective
           : selective // ignore: cast_nullable_to_non_nullable
               as bool?,
-      replyKeyboardRemove: freezed == replyKeyboardRemove
-          ? _value.replyKeyboardRemove
-          : replyKeyboardRemove // ignore: cast_nullable_to_non_nullable
-              as ReplyKeyboardRemove?,
+      removeKeyboard: freezed == removeKeyboard
+          ? _value.removeKeyboard
+          : removeKeyboard // ignore: cast_nullable_to_non_nullable
+              as bool?,
       forceReply: freezed == forceReply
           ? _value.forceReply
           : forceReply // ignore: cast_nullable_to_non_nullable
               as ForceReply?,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ReplyKeyboardRemoveCopyWith<$Res>? get replyKeyboardRemove {
-    if (_value.replyKeyboardRemove == null) {
-      return null;
-    }
-
-    return $ReplyKeyboardRemoveCopyWith<$Res>(_value.replyKeyboardRemove!,
-        (value) {
-      return _then(_value.copyWith(replyKeyboardRemove: value) as $Val);
-    });
   }
 
   @override
@@ -585,8 +570,7 @@ abstract class _$$_ReplyMarkUpCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'inline_keyboard')
           List<List<InlineKeyboardMarkup>>? inlineKeyboardMarkup,
-      @JsonKey(ignore: true)
-          List<List<KeyboardButton>>? keyboard,
+      List<List<KeyboardButton>>? keyboard,
       @JsonKey(name: 'resize_keyboard')
           bool? resizeKeyboard,
       @JsonKey(name: 'one_time_keyboard')
@@ -594,11 +578,10 @@ abstract class _$$_ReplyMarkUpCopyWith<$Res>
       @JsonKey(name: 'input_field_placholder')
           String? inputFieldPlaceHolder,
       bool? selective,
-      ReplyKeyboardRemove? replyKeyboardRemove,
+      @JsonKey(name: 'remove_keyboard')
+          bool? removeKeyboard,
       ForceReply? forceReply});
 
-  @override
-  $ReplyKeyboardRemoveCopyWith<$Res>? get replyKeyboardRemove;
   @override
   $ForceReplyCopyWith<$Res>? get forceReply;
 }
@@ -620,7 +603,7 @@ class __$$_ReplyMarkUpCopyWithImpl<$Res>
     Object? oneTimeKeyboard = freezed,
     Object? inputFieldPlaceHolder = freezed,
     Object? selective = freezed,
-    Object? replyKeyboardRemove = freezed,
+    Object? removeKeyboard = freezed,
     Object? forceReply = freezed,
   }) {
     return _then(_$_ReplyMarkUp(
@@ -648,10 +631,10 @@ class __$$_ReplyMarkUpCopyWithImpl<$Res>
           ? _value.selective
           : selective // ignore: cast_nullable_to_non_nullable
               as bool?,
-      replyKeyboardRemove: freezed == replyKeyboardRemove
-          ? _value.replyKeyboardRemove
-          : replyKeyboardRemove // ignore: cast_nullable_to_non_nullable
-              as ReplyKeyboardRemove?,
+      removeKeyboard: freezed == removeKeyboard
+          ? _value.removeKeyboard
+          : removeKeyboard // ignore: cast_nullable_to_non_nullable
+              as bool?,
       forceReply: freezed == forceReply
           ? _value.forceReply
           : forceReply // ignore: cast_nullable_to_non_nullable
@@ -666,8 +649,7 @@ class _$_ReplyMarkUp extends _ReplyMarkUp {
   _$_ReplyMarkUp(
       {@JsonKey(name: 'inline_keyboard')
           final List<List<InlineKeyboardMarkup>>? inlineKeyboardMarkup,
-      @JsonKey(ignore: true)
-          final List<List<KeyboardButton>>? keyboard,
+      final List<List<KeyboardButton>>? keyboard,
       @JsonKey(name: 'resize_keyboard')
           this.resizeKeyboard,
       @JsonKey(name: 'one_time_keyboard')
@@ -675,7 +657,8 @@ class _$_ReplyMarkUp extends _ReplyMarkUp {
       @JsonKey(name: 'input_field_placholder')
           this.inputFieldPlaceHolder,
       this.selective,
-      this.replyKeyboardRemove,
+      @JsonKey(name: 'remove_keyboard')
+          this.removeKeyboard,
       this.forceReply})
       : _inlineKeyboardMarkup = inlineKeyboardMarkup,
         _keyboard = keyboard,
@@ -696,7 +679,6 @@ class _$_ReplyMarkUp extends _ReplyMarkUp {
 
   final List<List<KeyboardButton>>? _keyboard;
   @override
-  @JsonKey(ignore: true)
   List<List<KeyboardButton>>? get keyboard {
     final value = _keyboard;
     if (value == null) return null;
@@ -716,13 +698,14 @@ class _$_ReplyMarkUp extends _ReplyMarkUp {
   @override
   final bool? selective;
   @override
-  final ReplyKeyboardRemove? replyKeyboardRemove;
+  @JsonKey(name: 'remove_keyboard')
+  final bool? removeKeyboard;
   @override
   final ForceReply? forceReply;
 
   @override
   String toString() {
-    return 'ReplyMarkUp(inlineKeyboardMarkup: $inlineKeyboardMarkup, keyboard: $keyboard, resizeKeyboard: $resizeKeyboard, oneTimeKeyboard: $oneTimeKeyboard, inputFieldPlaceHolder: $inputFieldPlaceHolder, selective: $selective, replyKeyboardRemove: $replyKeyboardRemove, forceReply: $forceReply)';
+    return 'ReplyMarkUp(inlineKeyboardMarkup: $inlineKeyboardMarkup, keyboard: $keyboard, resizeKeyboard: $resizeKeyboard, oneTimeKeyboard: $oneTimeKeyboard, inputFieldPlaceHolder: $inputFieldPlaceHolder, selective: $selective, removeKeyboard: $removeKeyboard, forceReply: $forceReply)';
   }
 
   @override
@@ -741,8 +724,8 @@ class _$_ReplyMarkUp extends _ReplyMarkUp {
                 other.inputFieldPlaceHolder == inputFieldPlaceHolder) &&
             (identical(other.selective, selective) ||
                 other.selective == selective) &&
-            (identical(other.replyKeyboardRemove, replyKeyboardRemove) ||
-                other.replyKeyboardRemove == replyKeyboardRemove) &&
+            (identical(other.removeKeyboard, removeKeyboard) ||
+                other.removeKeyboard == removeKeyboard) &&
             (identical(other.forceReply, forceReply) ||
                 other.forceReply == forceReply));
   }
@@ -757,7 +740,7 @@ class _$_ReplyMarkUp extends _ReplyMarkUp {
       oneTimeKeyboard,
       inputFieldPlaceHolder,
       selective,
-      replyKeyboardRemove,
+      removeKeyboard,
       forceReply);
 
   @JsonKey(ignore: true)
@@ -778,8 +761,7 @@ abstract class _ReplyMarkUp extends ReplyMarkUp {
   factory _ReplyMarkUp(
       {@JsonKey(name: 'inline_keyboard')
           final List<List<InlineKeyboardMarkup>>? inlineKeyboardMarkup,
-      @JsonKey(ignore: true)
-          final List<List<KeyboardButton>>? keyboard,
+      final List<List<KeyboardButton>>? keyboard,
       @JsonKey(name: 'resize_keyboard')
           final bool? resizeKeyboard,
       @JsonKey(name: 'one_time_keyboard')
@@ -787,7 +769,8 @@ abstract class _ReplyMarkUp extends ReplyMarkUp {
       @JsonKey(name: 'input_field_placholder')
           final String? inputFieldPlaceHolder,
       final bool? selective,
-      final ReplyKeyboardRemove? replyKeyboardRemove,
+      @JsonKey(name: 'remove_keyboard')
+          final bool? removeKeyboard,
       final ForceReply? forceReply}) = _$_ReplyMarkUp;
   _ReplyMarkUp._() : super._();
 
@@ -798,7 +781,6 @@ abstract class _ReplyMarkUp extends ReplyMarkUp {
   @JsonKey(name: 'inline_keyboard')
   List<List<InlineKeyboardMarkup>>? get inlineKeyboardMarkup;
   @override
-  @JsonKey(ignore: true)
   List<List<KeyboardButton>>? get keyboard;
   @override
   @JsonKey(name: 'resize_keyboard')
@@ -812,7 +794,8 @@ abstract class _ReplyMarkUp extends ReplyMarkUp {
   @override
   bool? get selective;
   @override
-  ReplyKeyboardRemove? get replyKeyboardRemove;
+  @JsonKey(name: 'remove_keyboard')
+  bool? get removeKeyboard;
   @override
   ForceReply? get forceReply;
   @override
@@ -1012,5 +995,418 @@ abstract class _ForceReply extends ForceReply {
   @override
   @JsonKey(ignore: true)
   _$$_ForceReplyCopyWith<_$_ForceReply> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+SendLocationModel _$SendLocationModelFromJson(Map<String, dynamic> json) {
+  return _SendLocationModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$SendLocationModel {
+  @JsonKey(name: 'chat_id')
+  int? get chatId => throw _privateConstructorUsedError;
+  double? get latitude => throw _privateConstructorUsedError;
+  double? get longitude => throw _privateConstructorUsedError;
+  @JsonKey(name: 'horizontal_accuracy')
+  double? get horizontalAccuracy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'live_period')
+  int? get livePeriod => throw _privateConstructorUsedError;
+  int? get heading => throw _privateConstructorUsedError;
+  @JsonKey(name: 'proximity_alert_radius')
+  int? get proximityAlertRadius => throw _privateConstructorUsedError;
+  @JsonKey(name: 'disable_notification')
+  bool? get disableNotification => throw _privateConstructorUsedError;
+  @JsonKey(name: 'protect_content')
+  bool? get protectContent => throw _privateConstructorUsedError;
+  @JsonKey(name: 'reply_to_message_id')
+  int? get replyToMessageId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'reply_markup')
+  ReplyMarkUp? get replyMarkUp => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $SendLocationModelCopyWith<SendLocationModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SendLocationModelCopyWith<$Res> {
+  factory $SendLocationModelCopyWith(
+          SendLocationModel value, $Res Function(SendLocationModel) then) =
+      _$SendLocationModelCopyWithImpl<$Res, SendLocationModel>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'chat_id') int? chatId,
+      double? latitude,
+      double? longitude,
+      @JsonKey(name: 'horizontal_accuracy') double? horizontalAccuracy,
+      @JsonKey(name: 'live_period') int? livePeriod,
+      int? heading,
+      @JsonKey(name: 'proximity_alert_radius') int? proximityAlertRadius,
+      @JsonKey(name: 'disable_notification') bool? disableNotification,
+      @JsonKey(name: 'protect_content') bool? protectContent,
+      @JsonKey(name: 'reply_to_message_id') int? replyToMessageId,
+      @JsonKey(name: 'reply_markup') ReplyMarkUp? replyMarkUp});
+
+  $ReplyMarkUpCopyWith<$Res>? get replyMarkUp;
+}
+
+/// @nodoc
+class _$SendLocationModelCopyWithImpl<$Res, $Val extends SendLocationModel>
+    implements $SendLocationModelCopyWith<$Res> {
+  _$SendLocationModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? chatId = freezed,
+    Object? latitude = freezed,
+    Object? longitude = freezed,
+    Object? horizontalAccuracy = freezed,
+    Object? livePeriod = freezed,
+    Object? heading = freezed,
+    Object? proximityAlertRadius = freezed,
+    Object? disableNotification = freezed,
+    Object? protectContent = freezed,
+    Object? replyToMessageId = freezed,
+    Object? replyMarkUp = freezed,
+  }) {
+    return _then(_value.copyWith(
+      chatId: freezed == chatId
+          ? _value.chatId
+          : chatId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      latitude: freezed == latitude
+          ? _value.latitude
+          : latitude // ignore: cast_nullable_to_non_nullable
+              as double?,
+      longitude: freezed == longitude
+          ? _value.longitude
+          : longitude // ignore: cast_nullable_to_non_nullable
+              as double?,
+      horizontalAccuracy: freezed == horizontalAccuracy
+          ? _value.horizontalAccuracy
+          : horizontalAccuracy // ignore: cast_nullable_to_non_nullable
+              as double?,
+      livePeriod: freezed == livePeriod
+          ? _value.livePeriod
+          : livePeriod // ignore: cast_nullable_to_non_nullable
+              as int?,
+      heading: freezed == heading
+          ? _value.heading
+          : heading // ignore: cast_nullable_to_non_nullable
+              as int?,
+      proximityAlertRadius: freezed == proximityAlertRadius
+          ? _value.proximityAlertRadius
+          : proximityAlertRadius // ignore: cast_nullable_to_non_nullable
+              as int?,
+      disableNotification: freezed == disableNotification
+          ? _value.disableNotification
+          : disableNotification // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      protectContent: freezed == protectContent
+          ? _value.protectContent
+          : protectContent // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      replyToMessageId: freezed == replyToMessageId
+          ? _value.replyToMessageId
+          : replyToMessageId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      replyMarkUp: freezed == replyMarkUp
+          ? _value.replyMarkUp
+          : replyMarkUp // ignore: cast_nullable_to_non_nullable
+              as ReplyMarkUp?,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ReplyMarkUpCopyWith<$Res>? get replyMarkUp {
+    if (_value.replyMarkUp == null) {
+      return null;
+    }
+
+    return $ReplyMarkUpCopyWith<$Res>(_value.replyMarkUp!, (value) {
+      return _then(_value.copyWith(replyMarkUp: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$_SendLocationModelCopyWith<$Res>
+    implements $SendLocationModelCopyWith<$Res> {
+  factory _$$_SendLocationModelCopyWith(_$_SendLocationModel value,
+          $Res Function(_$_SendLocationModel) then) =
+      __$$_SendLocationModelCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'chat_id') int? chatId,
+      double? latitude,
+      double? longitude,
+      @JsonKey(name: 'horizontal_accuracy') double? horizontalAccuracy,
+      @JsonKey(name: 'live_period') int? livePeriod,
+      int? heading,
+      @JsonKey(name: 'proximity_alert_radius') int? proximityAlertRadius,
+      @JsonKey(name: 'disable_notification') bool? disableNotification,
+      @JsonKey(name: 'protect_content') bool? protectContent,
+      @JsonKey(name: 'reply_to_message_id') int? replyToMessageId,
+      @JsonKey(name: 'reply_markup') ReplyMarkUp? replyMarkUp});
+
+  @override
+  $ReplyMarkUpCopyWith<$Res>? get replyMarkUp;
+}
+
+/// @nodoc
+class __$$_SendLocationModelCopyWithImpl<$Res>
+    extends _$SendLocationModelCopyWithImpl<$Res, _$_SendLocationModel>
+    implements _$$_SendLocationModelCopyWith<$Res> {
+  __$$_SendLocationModelCopyWithImpl(
+      _$_SendLocationModel _value, $Res Function(_$_SendLocationModel) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? chatId = freezed,
+    Object? latitude = freezed,
+    Object? longitude = freezed,
+    Object? horizontalAccuracy = freezed,
+    Object? livePeriod = freezed,
+    Object? heading = freezed,
+    Object? proximityAlertRadius = freezed,
+    Object? disableNotification = freezed,
+    Object? protectContent = freezed,
+    Object? replyToMessageId = freezed,
+    Object? replyMarkUp = freezed,
+  }) {
+    return _then(_$_SendLocationModel(
+      chatId: freezed == chatId
+          ? _value.chatId
+          : chatId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      latitude: freezed == latitude
+          ? _value.latitude
+          : latitude // ignore: cast_nullable_to_non_nullable
+              as double?,
+      longitude: freezed == longitude
+          ? _value.longitude
+          : longitude // ignore: cast_nullable_to_non_nullable
+              as double?,
+      horizontalAccuracy: freezed == horizontalAccuracy
+          ? _value.horizontalAccuracy
+          : horizontalAccuracy // ignore: cast_nullable_to_non_nullable
+              as double?,
+      livePeriod: freezed == livePeriod
+          ? _value.livePeriod
+          : livePeriod // ignore: cast_nullable_to_non_nullable
+              as int?,
+      heading: freezed == heading
+          ? _value.heading
+          : heading // ignore: cast_nullable_to_non_nullable
+              as int?,
+      proximityAlertRadius: freezed == proximityAlertRadius
+          ? _value.proximityAlertRadius
+          : proximityAlertRadius // ignore: cast_nullable_to_non_nullable
+              as int?,
+      disableNotification: freezed == disableNotification
+          ? _value.disableNotification
+          : disableNotification // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      protectContent: freezed == protectContent
+          ? _value.protectContent
+          : protectContent // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      replyToMessageId: freezed == replyToMessageId
+          ? _value.replyToMessageId
+          : replyToMessageId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      replyMarkUp: freezed == replyMarkUp
+          ? _value.replyMarkUp
+          : replyMarkUp // ignore: cast_nullable_to_non_nullable
+              as ReplyMarkUp?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_SendLocationModel extends _SendLocationModel {
+  _$_SendLocationModel(
+      {@JsonKey(name: 'chat_id') this.chatId,
+      this.latitude,
+      this.longitude,
+      @JsonKey(name: 'horizontal_accuracy') this.horizontalAccuracy,
+      @JsonKey(name: 'live_period') this.livePeriod,
+      this.heading,
+      @JsonKey(name: 'proximity_alert_radius') this.proximityAlertRadius,
+      @JsonKey(name: 'disable_notification') this.disableNotification,
+      @JsonKey(name: 'protect_content') this.protectContent,
+      @JsonKey(name: 'reply_to_message_id') this.replyToMessageId,
+      @JsonKey(name: 'reply_markup') this.replyMarkUp})
+      : super._();
+
+  factory _$_SendLocationModel.fromJson(Map<String, dynamic> json) =>
+      _$$_SendLocationModelFromJson(json);
+
+  @override
+  @JsonKey(name: 'chat_id')
+  final int? chatId;
+  @override
+  final double? latitude;
+  @override
+  final double? longitude;
+  @override
+  @JsonKey(name: 'horizontal_accuracy')
+  final double? horizontalAccuracy;
+  @override
+  @JsonKey(name: 'live_period')
+  final int? livePeriod;
+  @override
+  final int? heading;
+  @override
+  @JsonKey(name: 'proximity_alert_radius')
+  final int? proximityAlertRadius;
+  @override
+  @JsonKey(name: 'disable_notification')
+  final bool? disableNotification;
+  @override
+  @JsonKey(name: 'protect_content')
+  final bool? protectContent;
+  @override
+  @JsonKey(name: 'reply_to_message_id')
+  final int? replyToMessageId;
+  @override
+  @JsonKey(name: 'reply_markup')
+  final ReplyMarkUp? replyMarkUp;
+
+  @override
+  String toString() {
+    return 'SendLocationModel(chatId: $chatId, latitude: $latitude, longitude: $longitude, horizontalAccuracy: $horizontalAccuracy, livePeriod: $livePeriod, heading: $heading, proximityAlertRadius: $proximityAlertRadius, disableNotification: $disableNotification, protectContent: $protectContent, replyToMessageId: $replyToMessageId, replyMarkUp: $replyMarkUp)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_SendLocationModel &&
+            (identical(other.chatId, chatId) || other.chatId == chatId) &&
+            (identical(other.latitude, latitude) ||
+                other.latitude == latitude) &&
+            (identical(other.longitude, longitude) ||
+                other.longitude == longitude) &&
+            (identical(other.horizontalAccuracy, horizontalAccuracy) ||
+                other.horizontalAccuracy == horizontalAccuracy) &&
+            (identical(other.livePeriod, livePeriod) ||
+                other.livePeriod == livePeriod) &&
+            (identical(other.heading, heading) || other.heading == heading) &&
+            (identical(other.proximityAlertRadius, proximityAlertRadius) ||
+                other.proximityAlertRadius == proximityAlertRadius) &&
+            (identical(other.disableNotification, disableNotification) ||
+                other.disableNotification == disableNotification) &&
+            (identical(other.protectContent, protectContent) ||
+                other.protectContent == protectContent) &&
+            (identical(other.replyToMessageId, replyToMessageId) ||
+                other.replyToMessageId == replyToMessageId) &&
+            (identical(other.replyMarkUp, replyMarkUp) ||
+                other.replyMarkUp == replyMarkUp));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      chatId,
+      latitude,
+      longitude,
+      horizontalAccuracy,
+      livePeriod,
+      heading,
+      proximityAlertRadius,
+      disableNotification,
+      protectContent,
+      replyToMessageId,
+      replyMarkUp);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_SendLocationModelCopyWith<_$_SendLocationModel> get copyWith =>
+      __$$_SendLocationModelCopyWithImpl<_$_SendLocationModel>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_SendLocationModelToJson(
+      this,
+    );
+  }
+}
+
+abstract class _SendLocationModel extends SendLocationModel {
+  factory _SendLocationModel(
+      {@JsonKey(name: 'chat_id')
+          final int? chatId,
+      final double? latitude,
+      final double? longitude,
+      @JsonKey(name: 'horizontal_accuracy')
+          final double? horizontalAccuracy,
+      @JsonKey(name: 'live_period')
+          final int? livePeriod,
+      final int? heading,
+      @JsonKey(name: 'proximity_alert_radius')
+          final int? proximityAlertRadius,
+      @JsonKey(name: 'disable_notification')
+          final bool? disableNotification,
+      @JsonKey(name: 'protect_content')
+          final bool? protectContent,
+      @JsonKey(name: 'reply_to_message_id')
+          final int? replyToMessageId,
+      @JsonKey(name: 'reply_markup')
+          final ReplyMarkUp? replyMarkUp}) = _$_SendLocationModel;
+  _SendLocationModel._() : super._();
+
+  factory _SendLocationModel.fromJson(Map<String, dynamic> json) =
+      _$_SendLocationModel.fromJson;
+
+  @override
+  @JsonKey(name: 'chat_id')
+  int? get chatId;
+  @override
+  double? get latitude;
+  @override
+  double? get longitude;
+  @override
+  @JsonKey(name: 'horizontal_accuracy')
+  double? get horizontalAccuracy;
+  @override
+  @JsonKey(name: 'live_period')
+  int? get livePeriod;
+  @override
+  int? get heading;
+  @override
+  @JsonKey(name: 'proximity_alert_radius')
+  int? get proximityAlertRadius;
+  @override
+  @JsonKey(name: 'disable_notification')
+  bool? get disableNotification;
+  @override
+  @JsonKey(name: 'protect_content')
+  bool? get protectContent;
+  @override
+  @JsonKey(name: 'reply_to_message_id')
+  int? get replyToMessageId;
+  @override
+  @JsonKey(name: 'reply_markup')
+  ReplyMarkUp? get replyMarkUp;
+  @override
+  @JsonKey(ignore: true)
+  _$$_SendLocationModelCopyWith<_$_SendLocationModel> get copyWith =>
       throw _privateConstructorUsedError;
 }

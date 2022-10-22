@@ -46,14 +46,16 @@ _$_ReplyMarkUp _$$_ReplyMarkUpFromJson(Map<String, dynamic> json) =>
                   InlineKeyboardMarkup.fromJson(e as Map<String, dynamic>))
               .toList())
           .toList(),
+      keyboard: (json['keyboard'] as List<dynamic>?)
+          ?.map((e) => (e as List<dynamic>)
+              .map((e) => KeyboardButton.fromJson(e as Map<String, dynamic>))
+              .toList())
+          .toList(),
       resizeKeyboard: json['resize_keyboard'] as bool?,
       oneTimeKeyboard: json['one_time_keyboard'] as bool?,
       inputFieldPlaceHolder: json['input_field_placholder'] as String?,
       selective: json['selective'] as bool?,
-      replyKeyboardRemove: json['replyKeyboardRemove'] == null
-          ? null
-          : ReplyKeyboardRemove.fromJson(
-              json['replyKeyboardRemove'] as Map<String, dynamic>),
+      removeKeyboard: json['remove_keyboard'] as bool?,
       forceReply: json['forceReply'] == null
           ? null
           : ForceReply.fromJson(json['forceReply'] as Map<String, dynamic>),
@@ -64,11 +66,14 @@ Map<String, dynamic> _$$_ReplyMarkUpToJson(_$_ReplyMarkUp instance) =>
       'inline_keyboard': instance.inlineKeyboardMarkup
           ?.map((e) => e.map((e) => e.toJson()).toList())
           .toList(),
+      'keyboard': instance.keyboard
+          ?.map((e) => e.map((e) => e.toJson()).toList())
+          .toList(),
       'resize_keyboard': instance.resizeKeyboard,
       'one_time_keyboard': instance.oneTimeKeyboard,
       'input_field_placholder': instance.inputFieldPlaceHolder,
       'selective': instance.selective,
-      'replyKeyboardRemove': instance.replyKeyboardRemove?.toJson(),
+      'remove_keyboard': instance.removeKeyboard,
       'forceReply': instance.forceReply?.toJson(),
     };
 
@@ -84,4 +89,37 @@ Map<String, dynamic> _$$_ForceReplyToJson(_$_ForceReply instance) =>
       'force_reply': instance.forceReply,
       'input_field_placeholder': instance.inputFieldPlaceHolder,
       'selective': instance.selective,
+    };
+
+_$_SendLocationModel _$$_SendLocationModelFromJson(Map<String, dynamic> json) =>
+    _$_SendLocationModel(
+      chatId: json['chat_id'] as int?,
+      latitude: (json['latitude'] as num?)?.toDouble(),
+      longitude: (json['longitude'] as num?)?.toDouble(),
+      horizontalAccuracy: (json['horizontal_accuracy'] as num?)?.toDouble(),
+      livePeriod: json['live_period'] as int?,
+      heading: json['heading'] as int?,
+      proximityAlertRadius: json['proximity_alert_radius'] as int?,
+      disableNotification: json['disable_notification'] as bool?,
+      protectContent: json['protect_content'] as bool?,
+      replyToMessageId: json['reply_to_message_id'] as int?,
+      replyMarkUp: json['reply_markup'] == null
+          ? null
+          : ReplyMarkUp.fromJson(json['reply_markup'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$_SendLocationModelToJson(
+        _$_SendLocationModel instance) =>
+    <String, dynamic>{
+      'chat_id': instance.chatId,
+      'latitude': instance.latitude,
+      'longitude': instance.longitude,
+      'horizontal_accuracy': instance.horizontalAccuracy,
+      'live_period': instance.livePeriod,
+      'heading': instance.heading,
+      'proximity_alert_radius': instance.proximityAlertRadius,
+      'disable_notification': instance.disableNotification,
+      'protect_content': instance.protectContent,
+      'reply_to_message_id': instance.replyToMessageId,
+      'reply_markup': instance.replyMarkUp?.toJson(),
     };

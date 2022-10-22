@@ -30,12 +30,12 @@ class ReplyMarkUp with _$ReplyMarkUp {
   factory ReplyMarkUp({
     @JsonKey(name: 'inline_keyboard')
         List<List<InlineKeyboardMarkup>>? inlineKeyboardMarkup,
-    @JsonKey(ignore: true) List<List<KeyboardButton>>? keyboard,
+    List<List<KeyboardButton>>? keyboard,
     @JsonKey(name: 'resize_keyboard') bool? resizeKeyboard,
     @JsonKey(name: 'one_time_keyboard') bool? oneTimeKeyboard,
     @JsonKey(name: 'input_field_placholder') String? inputFieldPlaceHolder,
     bool? selective,
-    ReplyKeyboardRemove? replyKeyboardRemove,
+    @JsonKey(name: 'remove_keyboard') bool? removeKeyboard,
     ForceReply? forceReply,
   }) = _ReplyMarkUp;
   const ReplyMarkUp._();
@@ -55,4 +55,25 @@ class ForceReply with _$ForceReply {
 
   factory ForceReply.fromJson(Map<String, dynamic> json) =>
       _$ForceReplyFromJson(json);
+}
+
+@freezed
+class SendLocationModel with _$SendLocationModel {
+  factory SendLocationModel({
+    @JsonKey(name: 'chat_id') int? chatId,
+    double? latitude,
+    double? longitude,
+    @JsonKey(name: 'horizontal_accuracy') double? horizontalAccuracy,
+    @JsonKey(name: 'live_period') int? livePeriod,
+    int? heading,
+    @JsonKey(name: 'proximity_alert_radius') int? proximityAlertRadius,
+    @JsonKey(name: 'disable_notification') bool? disableNotification,
+    @JsonKey(name: 'protect_content') bool? protectContent,
+    @JsonKey(name: 'reply_to_message_id') int? replyToMessageId,
+    @JsonKey(name: 'reply_markup') ReplyMarkUp? replyMarkUp,
+  }) = _SendLocationModel;
+  const SendLocationModel._();
+
+  factory SendLocationModel.fromJson(Map<String, dynamic> json) =>
+      _$SendLocationModelFromJson(json);
 }
