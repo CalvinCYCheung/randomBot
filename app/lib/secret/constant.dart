@@ -6,4 +6,12 @@ class ApiConstant {
 
 enum TelBotAction {
   sendMessage,
+  sendLocation;
+
+  String get apiUrl {
+    return [
+      "${ApiConstant.telBot}${TelBotAction.sendMessage.name}",
+      "${ApiConstant.telBot}${TelBotAction.sendLocation.name}",
+    ][index];
+  }
 }
