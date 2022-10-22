@@ -1,6 +1,12 @@
 enum TelBotCommand {
   general,
+  restaurant,
+  removekeyboard,
   notCommand;
+
+  String get commandName {
+    return '/$name';
+  }
 }
 
 extension TelBotCommonExtension on List<TelBotCommand> {
