@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:app/data/command/tel_bot_command.dart';
+import 'package:app/utils/global.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'tel_data.freezed.dart';
@@ -9,8 +12,13 @@ class TelData with _$TelData {
   factory TelData({
     @JsonKey(name: 'update_id') int? UpdateId,
     MessageData? message,
+    @JsonKey(name: 'callback_query') CallBackQuery? callBackQuery,
   }) = _TelData;
   const TelData._();
+
+  int? get chatId {
+    return message?.chat?.id;
+  }
 
   factory TelData.fromJson(Map<String, dynamic> json) =>
       _$TelDataFromJson(json);
@@ -90,4 +98,23 @@ class TelLatlng with _$TelLatlng {
 
   factory TelLatlng.fromJson(Map<String, dynamic> json) =>
       _$TelLatlngFromJson(json);
+}
+
+@freezed
+class CallBackQuery with _$CallBackQuery {
+  factory CallBackQuery({
+    String? id,
+    FromData? from,
+    MessageData? message,
+    String? data,
+  }) = _CallBackQuery;
+  const CallBackQuery._();
+
+  int get chatId {
+    logger.d(this);
+    return from?.id ?? message!.chat!.id!;
+  }
+
+  factory CallBackQuery.fromJson(Map<String, dynamic> json) =>
+      _$CallBackQueryFromJson(json);
 }

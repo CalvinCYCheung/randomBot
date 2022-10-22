@@ -23,6 +23,8 @@ mixin _$TelData {
   @JsonKey(name: 'update_id')
   int? get UpdateId => throw _privateConstructorUsedError;
   MessageData? get message => throw _privateConstructorUsedError;
+  @JsonKey(name: 'callback_query')
+  CallBackQuery? get callBackQuery => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,9 +36,13 @@ abstract class $TelDataCopyWith<$Res> {
   factory $TelDataCopyWith(TelData value, $Res Function(TelData) then) =
       _$TelDataCopyWithImpl<$Res, TelData>;
   @useResult
-  $Res call({@JsonKey(name: 'update_id') int? UpdateId, MessageData? message});
+  $Res call(
+      {@JsonKey(name: 'update_id') int? UpdateId,
+      MessageData? message,
+      @JsonKey(name: 'callback_query') CallBackQuery? callBackQuery});
 
   $MessageDataCopyWith<$Res>? get message;
+  $CallBackQueryCopyWith<$Res>? get callBackQuery;
 }
 
 /// @nodoc
@@ -54,6 +60,7 @@ class _$TelDataCopyWithImpl<$Res, $Val extends TelData>
   $Res call({
     Object? UpdateId = freezed,
     Object? message = freezed,
+    Object? callBackQuery = freezed,
   }) {
     return _then(_value.copyWith(
       UpdateId: freezed == UpdateId
@@ -64,6 +71,10 @@ class _$TelDataCopyWithImpl<$Res, $Val extends TelData>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as MessageData?,
+      callBackQuery: freezed == callBackQuery
+          ? _value.callBackQuery
+          : callBackQuery // ignore: cast_nullable_to_non_nullable
+              as CallBackQuery?,
     ) as $Val);
   }
 
@@ -78,6 +89,18 @@ class _$TelDataCopyWithImpl<$Res, $Val extends TelData>
       return _then(_value.copyWith(message: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $CallBackQueryCopyWith<$Res>? get callBackQuery {
+    if (_value.callBackQuery == null) {
+      return null;
+    }
+
+    return $CallBackQueryCopyWith<$Res>(_value.callBackQuery!, (value) {
+      return _then(_value.copyWith(callBackQuery: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -87,10 +110,15 @@ abstract class _$$_TelDataCopyWith<$Res> implements $TelDataCopyWith<$Res> {
       __$$_TelDataCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({@JsonKey(name: 'update_id') int? UpdateId, MessageData? message});
+  $Res call(
+      {@JsonKey(name: 'update_id') int? UpdateId,
+      MessageData? message,
+      @JsonKey(name: 'callback_query') CallBackQuery? callBackQuery});
 
   @override
   $MessageDataCopyWith<$Res>? get message;
+  @override
+  $CallBackQueryCopyWith<$Res>? get callBackQuery;
 }
 
 /// @nodoc
@@ -105,6 +133,7 @@ class __$$_TelDataCopyWithImpl<$Res>
   $Res call({
     Object? UpdateId = freezed,
     Object? message = freezed,
+    Object? callBackQuery = freezed,
   }) {
     return _then(_$_TelData(
       UpdateId: freezed == UpdateId
@@ -115,6 +144,10 @@ class __$$_TelDataCopyWithImpl<$Res>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as MessageData?,
+      callBackQuery: freezed == callBackQuery
+          ? _value.callBackQuery
+          : callBackQuery // ignore: cast_nullable_to_non_nullable
+              as CallBackQuery?,
     ));
   }
 }
@@ -122,7 +155,10 @@ class __$$_TelDataCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_TelData extends _TelData {
-  _$_TelData({@JsonKey(name: 'update_id') this.UpdateId, this.message})
+  _$_TelData(
+      {@JsonKey(name: 'update_id') this.UpdateId,
+      this.message,
+      @JsonKey(name: 'callback_query') this.callBackQuery})
       : super._();
 
   factory _$_TelData.fromJson(Map<String, dynamic> json) =>
@@ -133,10 +169,13 @@ class _$_TelData extends _TelData {
   final int? UpdateId;
   @override
   final MessageData? message;
+  @override
+  @JsonKey(name: 'callback_query')
+  final CallBackQuery? callBackQuery;
 
   @override
   String toString() {
-    return 'TelData(UpdateId: $UpdateId, message: $message)';
+    return 'TelData(UpdateId: $UpdateId, message: $message, callBackQuery: $callBackQuery)';
   }
 
   @override
@@ -146,12 +185,15 @@ class _$_TelData extends _TelData {
             other is _$_TelData &&
             (identical(other.UpdateId, UpdateId) ||
                 other.UpdateId == UpdateId) &&
-            (identical(other.message, message) || other.message == message));
+            (identical(other.message, message) || other.message == message) &&
+            (identical(other.callBackQuery, callBackQuery) ||
+                other.callBackQuery == callBackQuery));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, UpdateId, message);
+  int get hashCode =>
+      Object.hash(runtimeType, UpdateId, message, callBackQuery);
 
   @JsonKey(ignore: true)
   @override
@@ -169,8 +211,11 @@ class _$_TelData extends _TelData {
 
 abstract class _TelData extends TelData {
   factory _TelData(
-      {@JsonKey(name: 'update_id') final int? UpdateId,
-      final MessageData? message}) = _$_TelData;
+      {@JsonKey(name: 'update_id')
+          final int? UpdateId,
+      final MessageData? message,
+      @JsonKey(name: 'callback_query')
+          final CallBackQuery? callBackQuery}) = _$_TelData;
   _TelData._() : super._();
 
   factory _TelData.fromJson(Map<String, dynamic> json) = _$_TelData.fromJson;
@@ -180,6 +225,9 @@ abstract class _TelData extends TelData {
   int? get UpdateId;
   @override
   MessageData? get message;
+  @override
+  @JsonKey(name: 'callback_query')
+  CallBackQuery? get callBackQuery;
   @override
   @JsonKey(ignore: true)
   _$$_TelDataCopyWith<_$_TelData> get copyWith =>
@@ -1124,5 +1172,226 @@ abstract class _TelLatlng extends TelLatlng {
   @override
   @JsonKey(ignore: true)
   _$$_TelLatlngCopyWith<_$_TelLatlng> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+CallBackQuery _$CallBackQueryFromJson(Map<String, dynamic> json) {
+  return _CallBackQuery.fromJson(json);
+}
+
+/// @nodoc
+mixin _$CallBackQuery {
+  String? get id => throw _privateConstructorUsedError;
+  FromData? get from => throw _privateConstructorUsedError;
+  MessageData? get message => throw _privateConstructorUsedError;
+  String? get data => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $CallBackQueryCopyWith<CallBackQuery> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $CallBackQueryCopyWith<$Res> {
+  factory $CallBackQueryCopyWith(
+          CallBackQuery value, $Res Function(CallBackQuery) then) =
+      _$CallBackQueryCopyWithImpl<$Res, CallBackQuery>;
+  @useResult
+  $Res call({String? id, FromData? from, MessageData? message, String? data});
+
+  $FromDataCopyWith<$Res>? get from;
+  $MessageDataCopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$CallBackQueryCopyWithImpl<$Res, $Val extends CallBackQuery>
+    implements $CallBackQueryCopyWith<$Res> {
+  _$CallBackQueryCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? from = freezed,
+    Object? message = freezed,
+    Object? data = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      from: freezed == from
+          ? _value.from
+          : from // ignore: cast_nullable_to_non_nullable
+              as FromData?,
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as MessageData?,
+      data: freezed == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $FromDataCopyWith<$Res>? get from {
+    if (_value.from == null) {
+      return null;
+    }
+
+    return $FromDataCopyWith<$Res>(_value.from!, (value) {
+      return _then(_value.copyWith(from: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $MessageDataCopyWith<$Res>? get message {
+    if (_value.message == null) {
+      return null;
+    }
+
+    return $MessageDataCopyWith<$Res>(_value.message!, (value) {
+      return _then(_value.copyWith(message: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$_CallBackQueryCopyWith<$Res>
+    implements $CallBackQueryCopyWith<$Res> {
+  factory _$$_CallBackQueryCopyWith(
+          _$_CallBackQuery value, $Res Function(_$_CallBackQuery) then) =
+      __$$_CallBackQueryCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String? id, FromData? from, MessageData? message, String? data});
+
+  @override
+  $FromDataCopyWith<$Res>? get from;
+  @override
+  $MessageDataCopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class __$$_CallBackQueryCopyWithImpl<$Res>
+    extends _$CallBackQueryCopyWithImpl<$Res, _$_CallBackQuery>
+    implements _$$_CallBackQueryCopyWith<$Res> {
+  __$$_CallBackQueryCopyWithImpl(
+      _$_CallBackQuery _value, $Res Function(_$_CallBackQuery) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? from = freezed,
+    Object? message = freezed,
+    Object? data = freezed,
+  }) {
+    return _then(_$_CallBackQuery(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      from: freezed == from
+          ? _value.from
+          : from // ignore: cast_nullable_to_non_nullable
+              as FromData?,
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as MessageData?,
+      data: freezed == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_CallBackQuery extends _CallBackQuery {
+  _$_CallBackQuery({this.id, this.from, this.message, this.data}) : super._();
+
+  factory _$_CallBackQuery.fromJson(Map<String, dynamic> json) =>
+      _$$_CallBackQueryFromJson(json);
+
+  @override
+  final String? id;
+  @override
+  final FromData? from;
+  @override
+  final MessageData? message;
+  @override
+  final String? data;
+
+  @override
+  String toString() {
+    return 'CallBackQuery(id: $id, from: $from, message: $message, data: $data)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_CallBackQuery &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.from, from) || other.from == from) &&
+            (identical(other.message, message) || other.message == message) &&
+            (identical(other.data, data) || other.data == data));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, from, message, data);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_CallBackQueryCopyWith<_$_CallBackQuery> get copyWith =>
+      __$$_CallBackQueryCopyWithImpl<_$_CallBackQuery>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_CallBackQueryToJson(
+      this,
+    );
+  }
+}
+
+abstract class _CallBackQuery extends CallBackQuery {
+  factory _CallBackQuery(
+      {final String? id,
+      final FromData? from,
+      final MessageData? message,
+      final String? data}) = _$_CallBackQuery;
+  _CallBackQuery._() : super._();
+
+  factory _CallBackQuery.fromJson(Map<String, dynamic> json) =
+      _$_CallBackQuery.fromJson;
+
+  @override
+  String? get id;
+  @override
+  FromData? get from;
+  @override
+  MessageData? get message;
+  @override
+  String? get data;
+  @override
+  @JsonKey(ignore: true)
+  _$$_CallBackQueryCopyWith<_$_CallBackQuery> get copyWith =>
       throw _privateConstructorUsedError;
 }

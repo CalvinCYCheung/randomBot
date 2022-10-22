@@ -11,12 +11,17 @@ _$_TelData _$$_TelDataFromJson(Map<String, dynamic> json) => _$_TelData(
       message: json['message'] == null
           ? null
           : MessageData.fromJson(json['message'] as Map<String, dynamic>),
+      callBackQuery: json['callback_query'] == null
+          ? null
+          : CallBackQuery.fromJson(
+              json['callback_query'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_TelDataToJson(_$_TelData instance) =>
     <String, dynamic>{
       'update_id': instance.UpdateId,
       'message': instance.message?.toJson(),
+      'callback_query': instance.callBackQuery?.toJson(),
     };
 
 _$_MessageData _$$_MessageDataFromJson(Map<String, dynamic> json) =>
@@ -90,4 +95,24 @@ Map<String, dynamic> _$$_TelLatlngToJson(_$_TelLatlng instance) =>
     <String, dynamic>{
       'latitude': instance.latitude,
       'longitude': instance.longitude,
+    };
+
+_$_CallBackQuery _$$_CallBackQueryFromJson(Map<String, dynamic> json) =>
+    _$_CallBackQuery(
+      id: json['id'] as String?,
+      from: json['from'] == null
+          ? null
+          : FromData.fromJson(json['from'] as Map<String, dynamic>),
+      message: json['message'] == null
+          ? null
+          : MessageData.fromJson(json['message'] as Map<String, dynamic>),
+      data: json['data'] as String?,
+    );
+
+Map<String, dynamic> _$$_CallBackQueryToJson(_$_CallBackQuery instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'from': instance.from?.toJson(),
+      'message': instance.message?.toJson(),
+      'data': instance.data,
     };
