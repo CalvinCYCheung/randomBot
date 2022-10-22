@@ -2,13 +2,14 @@ import 'package:app/utils/global.dart';
 
 void cleanNull(Map<String, dynamic> json) {
   json.removeWhere((key, value) => value == null);
-  logger.d('checking: ${json.values is List<dynamic>}');
+
+  /// logger.d('checking: ${json.values is List<dynamic>}');
   for (final key in json.keys) {
-    logger.d(json[key].runtimeType);
+    /// logger.d(json[key].runtimeType);
     if (json[key] is Map<String, dynamic>) {
       cleanNull(json[key] as Map<String, dynamic>);
     } else if (json[key] is List<Map>) {
-      logger.d('is List');
+      /// logger.d('is List');
       for (final element in (json[key] as List)) {
         cleanNull(element as Map<String, dynamic>);
       }
