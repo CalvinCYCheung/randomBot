@@ -11,7 +11,7 @@ import 'package:http/http.dart' as http;
 import 'package:shelf/shelf.dart';
 
 class HttpRequestController {
-  Future<http.Response> postRequest(
+  Future<Map<String, dynamic>> postRequest(
     String url,
     Map<String, dynamic> body, {
     Map<String, String>? headers,
@@ -22,7 +22,7 @@ class HttpRequestController {
       headers: headers,
       body: jsonEncode(body),
     );
-    return response;
+    return jsonDecode(response.body) as Map<String, dynamic>;
   }
 
   Future<http.Response> getRequest(String url) async {
