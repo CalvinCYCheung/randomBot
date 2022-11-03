@@ -7,9 +7,11 @@ import 'package:app/data/model/google_map/nearby_query_model.dart';
 import 'package:app/data/model/income_data/tel_data.dart';
 import 'package:app/data/model/keyborad/keyboard_model.dart';
 import 'package:app/data/model/message/message_model.dart';
+import 'package:app/data/model/my_api/hk_restaurants.dart';
 import 'package:app/repository/query_repository.dart';
 import 'package:app/secret/constant.dart';
 import 'package:app/secret/secret.dart';
+import 'package:app/utils/callback_data_detector/data_detector.dart';
 
 import 'package:app/utils/global.dart';
 import 'package:app/utils/utils.dart';
@@ -41,7 +43,7 @@ class MessageController {
           '_https://api.telegram.org/bot${EnvSecrets.bot}/sendMessage',
           message);
 
-      logger.d(response.body);
+      logger.d(response);
     } catch (e) {
       logger.e(e);
     }
@@ -87,7 +89,7 @@ class MessageController {
     logger.d(message);
     final response = await _http.postRequest(
         '${ApiConstant.telBot}${TelBotAction.sendMessage.name}', message);
-    logger.d(response.body);
+    logger.d(response);
   }
 
   removeReplyKeyboard(TelData data) async {
@@ -103,7 +105,7 @@ class MessageController {
       TelBotAction.sendMessage.apiUrl,
       message,
     );
-    logger.d(response.body);
+    logger.d(response);
   }
 
   inlineKeyboard(TelData data) async {
@@ -125,7 +127,7 @@ class MessageController {
         .withCleanNull;
     final response = await _http.postRequest(
         '${ApiConstant.telBot}${TelBotAction.sendMessage.name}', message);
-    logger.d(response.body);
+    logger.d(response);
   }
 
   searchResult(TelData data, NearByResponse response) async {
@@ -158,30 +160,36 @@ class MessageController {
     final botResponse =
         await _http.postRequest(TelBotAction.sendMessage.apiUrl, message);
 
-    logger.d(botResponse.body);
+    logger.d(botResponse);
   }
 
-  searchCallBackResponse(
-      TelData data, GooglePlaceModel googlePlaceModel) async {
-    final botResponse = await _http.postRequest(
-        TelBotAction.sendMessage.apiUrl,
-        SendMessageModel(
-                chatId: data.callBackQuery!.chatId,
-                text: '${googlePlaceModel.name}\n${googlePlaceModel.vicinity}',
-                parseMode: 'Markdown')
-            .toJson()
-            .withCleanNull);
-    logger.d(botResponse.body);
-    final botLocationResponse = await _http.postRequest(
-        TelBotAction.sendLocation.apiUrl,
-        SendLocationModel(
-            chatId: data.callBackQuery!.chatId,
-            latitude: googlePlaceModel.getLocation[0],
-            longitude: googlePlaceModel.getLocation[1],
-            replyMarkUp: ReplyMarkUp(
-              removeKeyboard: true,
-            )).toJson().withCleanNull);
-    _queryRepository.removeAllData(data.callBackQuery!.chatId);
-    logger.d(botLocationResponse.body);
+  restaurantsResponse(
+      TelData telData, List<HkRestaurants> hkRestaurants) async {
+    var keyboards = hkRestaurants
+        .map((e) => [
+              InlineKeyboardMarkup(
+                text: e.name ?? '',
+                callbackData:
+                    '${RestaurantsCallBackAction.restaurantData.data}${e.latitude},${e.longitude}',
+              )
+            ])
+        .toList();
+    keyboards.add([
+      InlineKeyboardMarkup(
+        text: '下一頁',
+        callbackData:
+            '${RestaurantsCallBackAction.nextPage.data}0/${telData.message!.location!.latitude}/${telData.message!.location!.longitude}',
+      )
+    ]);
+    final message = SendMessageModel(
+        chatId: telData.message?.chat?.id,
+        text: hkRestaurants.isNotEmpty ? '附近有:' : '附近乜都冇!',
+        replyMarkUp: ReplyMarkUp(
+          inlineKeyboardMarkup: hkRestaurants.isNotEmpty ? keyboards : null,
+          removeKeyboard: true,
+        )).toJson().withCleanNull;
+    final botResponse =
+        await _http.postRequest(TelBotAction.sendMessage.apiUrl, message);
+    logger.d(botResponse);
   }
 }
