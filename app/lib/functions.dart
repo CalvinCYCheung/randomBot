@@ -19,6 +19,7 @@ final jsonDecoder = JsonDecoder();
 Future<void> function(TelData? data, RequestContext? context) async {
   logger.wtf(context?.request.headers);
   logger.d(data);
+  logger.d(data?.callBackQuery?.message?.chat);
   if (data == null) return;
   if (data.callBackQuery != null) {
     if (DataDetector()
@@ -46,6 +47,9 @@ Future<void> function(TelData? data, RequestContext? context) async {
         case TelBotCommand.removekeyboard:
           MessageController().removeReplyKeyboard(data);
           break;
+        case TelBotCommand.randomrestaurants:
+          MessageController().shareLocation(data);
+          break;
       }
     } else {
       if (data.message!.location != null) {
@@ -54,7 +58,9 @@ Future<void> function(TelData? data, RequestContext? context) async {
         if (result == null) {
           return;
         }
-        MessageController().restaurantsResponse(data, result);
+
+        /// MessageController().restaurantsResponse(data, result);
+        MessageController().randomRestaurants(data, result);
 
         /// MessageController().searchResult(data, result);
       }

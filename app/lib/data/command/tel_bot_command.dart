@@ -2,6 +2,7 @@ enum TelBotCommand {
   general,
   restaurant,
   removekeyboard,
+  randomrestaurants,
   notCommand;
 
   String get commandName {

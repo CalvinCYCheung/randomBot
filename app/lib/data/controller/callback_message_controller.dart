@@ -47,13 +47,29 @@ extension CallBackMessageController on MessageController {
       case RestaurantsCallBackAction.restaurantData:
         break;
       case RestaurantsCallBackAction.previousPage:
-        ActionController()
-            .getHKRestaurants(telData, int.parse(splitted[1]) - 10);
+        ActionController().getHKRestaurants(
+          telData,
+          int.parse(splitted[1]) - 10,
+          lat: double.parse(splitted[2]),
+          long: double.parse(splitted[3]),
+        );
         break;
       case RestaurantsCallBackAction.nextPage:
-        final data = ActionController()
-            .getHKRestaurants(telData, int.parse(splitted[1]) + 10);
+        final latlng = TelLatlng(
+            latitude: double.parse(splitted[2]),
+            longitude: double.parse(splitted[3]));
 
+        telData = telData.copyWith(
+            message: MessageData(
+                chat: telData.callBackQuery?.message?.chat, location: latlng));
+        final data = await ActionController().getHKRestaurants(
+          telData,
+          int.parse(splitted[1]) + 10,
+          lat: latlng.latitude,
+          long: double.parse(splitted[3]),
+        );
+        logger.d(telData);
+        MessageController().restaurantsResponse(telData, data ?? []);
         break;
     }
   }

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:app/data/command/tel_bot_command.dart';
 import 'package:app/data/controller/action_controller.dart';
@@ -50,37 +51,28 @@ class MessageController {
   }
 
   shareLocation(TelData data) async {
-    final replyMarkup = ReplyMarkUp(keyboard: [
-      [
-        KeyboardButton(
-          text: 'share location',
-          requestLocation: true,
-        )
-      ],
-      [
-        KeyboardButton(
-          text: '/removeKeyboard',
-        )
-      ]
-    ], oneTimeKeyboard: true, resizeKeyboard: true);
     final message = SendMessageModel(
       chatId: data.message?.chat?.id,
-      text: '*testing*',
+      text: '唔該Share位置🙏🙏',
 
       /// parseMode: 'Markdown',
-      replyMarkUp: ReplyMarkUp(keyboard: [
-        [
-          KeyboardButton(
-            text: 'share location',
-            requestLocation: true,
-          )
+      replyMarkUp: ReplyMarkUp(
+        oneTimeKeyboard: true,
+        resizeKeyboard: true,
+        keyboard: [
+          [
+            KeyboardButton(
+              text: 'share',
+              requestLocation: true,
+            )
+          ],
+          [
+            KeyboardButton(
+              text: TelBotCommand.removekeyboard.commandName,
+            )
+          ]
         ],
-        [
-          KeyboardButton(
-            text: TelBotCommand.removekeyboard.commandName,
-          )
-        ]
-      ], oneTimeKeyboard: true, resizeKeyboard: true),
+      ),
 
       /// replyMarkUp: ReplyMarkUp(
       ///     replyKeyboardRemove: ReplyKeyboardRemove(removeKeyboard: true)),
@@ -95,7 +87,7 @@ class MessageController {
   removeReplyKeyboard(TelData data) async {
     final message = SendMessageModel(
       chatId: data.message?.chat?.id,
-      text: 'OK, remove now!',
+      text: 'OK',
       replyMarkUp: ReplyMarkUp(
         removeKeyboard: true,
       ),
@@ -164,7 +156,10 @@ class MessageController {
   }
 
   restaurantsResponse(
-      TelData telData, List<HkRestaurants> hkRestaurants) async {
+    TelData telData,
+    List<HkRestaurants> hkRestaurants, {
+    int? offset,
+  }) async {
     var keyboards = hkRestaurants
         .map((e) => [
               InlineKeyboardMarkup(
@@ -178,7 +173,7 @@ class MessageController {
       InlineKeyboardMarkup(
         text: '下一頁',
         callbackData:
-            '${RestaurantsCallBackAction.nextPage.data}0/${telData.message!.location!.latitude}/${telData.message!.location!.longitude}',
+            '${RestaurantsCallBackAction.nextPage.data}${offset ?? 0}/${telData.message!.location!.latitude}/${telData.message!.location!.longitude}',
       )
     ]);
     final message = SendMessageModel(
@@ -191,5 +186,30 @@ class MessageController {
     final botResponse =
         await _http.postRequest(TelBotAction.sendMessage.apiUrl, message);
     logger.d(botResponse);
+  }
+
+  randomRestaurants(TelData teldata, List<HkRestaurants> hkRestaurants) async {
+    final restaurant = hkRestaurants[Random().nextInt(hkRestaurants.length)];
+    final message = SendMessageModel(
+      chatId: teldata.message?.chat?.id,
+      text:
+          '<a href="http://www.google.com/search?q=${restaurant.name}+${restaurant.address}">${restaurant.name}</a>',
+      parseMode: 'HTML',
+    );
+    final location = SendLocationModel(
+      chatId: teldata.message?.chat?.id,
+      longitude: restaurant.longitude,
+      latitude: restaurant.latitude,
+    );
+    final msgResponse = await _http.postRequest(
+      TelBotAction.sendMessage.apiUrl,
+      message.toJson().withCleanNull,
+    );
+    logger.d(msgResponse);
+    final localResponse = await _http.postRequest(
+      TelBotAction.sendLocation.apiUrl,
+      location.toJson().withCleanNull,
+    );
+    logger.d(localResponse);
   }
 }

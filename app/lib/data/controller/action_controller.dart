@@ -47,12 +47,13 @@ class ActionController {
   }
 
   /// my Api
-  Future<List<HkRestaurants>?> getHKRestaurants(
-      TelData data, int offset) async {
-    final latlng = data.message!.location!;
+  Future<List<HkRestaurants>?> getHKRestaurants(TelData data, int offset,
+      {double? lat, double? long}) async {
+    final latlng =
+        data.message?.location ?? TelLatlng(latitude: lat, longitude: long);
     final response = await runFuture(http.postRequest(
         '${ApiConstant.myApiEndpoint}/get/restaurants',
-        {"lat": latlng.latitude, "long": latlng.longitude, "offset": offset},
+        {"lat": latlng.latitude, "long": latlng.longitude},
         headers: ApiConstant.myApiHeaders));
     if (response is Fail) {
       logger.e(response.takeSuccess());
